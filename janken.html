@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/sample.css">
+  <title>馬陽の戦い</title>
+</head>
+
+<body>
+  
+  <div class="battle-field">
+    <div class="Pika">
+      <img src="./img/おうき.png" alt="王騎">
+      <div id="life-frame">
+        <div id="life-bar"></div>
+        <div id="life-mark"></div>
+      </div>
+      <div id="btns-wrap">
+        <div id="increase-btn" onclick="alterLife( 10 )">+</div>
+        <div id="decrease-btn" onclick="alterLife( -10 )">-</div>
+      </div>
+    </div>
+    
+    <div class="vs-wrapper">
+      <h1 id="battle-result">馬陽の戦い</h1>
+    </div>
+    
+    <div class="Slime">
+      <img src="./img/ほうけん (2).png" alt="龐煖">
+      <div id="life-frame-1">
+        <div id="life-bar-1"></div>
+        <div id="life-mark-1"></div>
+      </div>
+      <div id="btns-wrap-1">
+        <div id="increase-btn-1" onclick="alterLifeS( 10 )">+</div>
+        <div id="decrease-btn-1" onclick="alterLifeS( -10 )">-</div>
+      </div>
+    </div>
+  </div>
+  
+  
+
+  <main>
+    <ul>
+      <li id="gu_btn">矛</li>
+      <li id="cho_btn">槍</li>
+      <li id="par_btn">弓</li>
+    </ul>
+    <div id="com_hand">龐煖の出した手は？</div>
+    <div id="result">結果は？</div>
+  </main>
+
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    //ここに処理を追加
+
+
+    // ----------------------------------------------自分---------------------------------------------------
+    // ----------------------------------------------------------------------------------------------------
+
+      const lifeBar = document.getElementById('life-bar')         // ライフバー
+      const lifeMark = document.getElementById('life-mark')       // ライフの光部分
+      const increaseBtn = document.getElementById('increase-btn') // + ボタン
+      const decreaseBtn = document.getElementById('decrease-btn') // - ボタン
+      let life = 100                                              // ライフ初期値
+      lifeBar.style.width = "100%"                                // ライフ初期幅
+
+      // *** ライフ変更処理 ***
+      function alterLife(value) {
+        // lifeの値を算出する
+        life += value
+        if (life <= 0) {
+          // 算出の結果 0 以下になった場合
+          life = 0
+          $('#battle-result').text('敗北！');
+          // 0.3秒後に光部分を非表示にする
+          setTimeout(function () {
+            lifeMark.style.visibility = 'hidden'
+          }, 300)
+        } else {
+          // 算出の結果 100 を超過した場合
+          if (life > 100) {
+            life = 100
+          }
+          // 光部分を表示する
+          lifeMark.style.visibility = 'visible'
+        }
+        // スタイル(幅)を更新する
+        lifeBar.style.width = life + "%"
+      }
+
+      // -----------------------------------------相手------------------------------------------------------
+      // --------------------------------------------------------------------------------------------------
+
+        const lifeBarS = document.getElementById('life-bar-1')         // ライフバー
+        const lifeMarkS = document.getElementById('life-mark-1')       // ライフの光部分
+        const increaseBtnS = document.getElementById('increase-btn-1') // + ボタン
+        const decreaseBtnS = document.getElementById('decrease-btn-1') // - ボタン
+        let SLife = 100                                              // ライフ初期値
+        lifeBarS.style.width = "100%"                                // ライフ初期幅
+
+        // *** ライフ変更処理 ***
+        function alterLifeS(value) {
+          // lifeの値を算出する
+          SLife += value
+          if (SLife <= 0) {
+            // 算出の結果 0 以下になった場合
+            SLife = 0
+            $('#battle-result').text('勝利！')
+            // 0.3秒後に光部分を非表示にする
+            setTimeout(function () {
+              lifeMarkS.style.visibility = 'hidden'
+            }, 300)
+          } else {
+            // 算出の結果 100 を超過した場合
+            if (SLife > 100) {
+              SLife = 100
+            }
+            // 光部分を表示する
+            lifeMarkS.style.visibility = 'visible'
+          }
+          // スタイル(幅)を更新する
+          lifeBarS.style.width = SLife + "%"
+        }
+
+
+// ------------------------------------------------------ダメージ計算-----------------------------------------
+// ---------------------------------------------------------------------------------------------------------
+
+    $('#gu_btn').on('click', function () {
+
+      const computerNumber = Math.floor(Math.random() * 3);
+
+      if (computerNumber === 0) {
+        $('#com_hand').text('グー');
+        $('#result').text('あいこ');
+        $('#decrease-btn').trigger('click');
+        $('#decrease-btn-1').trigger('click');
+
+
+      } else if (computerNumber === 1) {
+        $('#com_hand').text('チョキ');
+        $('#result').text('勝ち');
+        $('#decrease-btn-1').trigger('click');
+        
+      } else if (computerNumber === 2) {
+        $('#com_hand').text('パー');
+        $('#result').text('負け');
+        $('#decrease-btn').trigger('click');
+      } else {
+        // エラー処理を書く$('').
+
+      }
+
+    });
+
+    $('#cho_btn').on('click', function () {
+
+      const computerNumber = Math.floor(Math.random() * 3);
+
+      if (computerNumber === 0) {
+        $('#com_hand').text('グー');
+        $('#result').text('負け');
+        $('#decrease-btn').trigger('click');
+
+      } else if (computerNumber === 1) {
+        $('#com_hand').text('チョキ');
+        $('#result').text('あいこ');
+        $('#decrease-btn').trigger('click');
+        $('#decrease-btn-1').trigger('click');
+
+      } else if (computerNumber === 2) {
+        $('#com_hand').text('パー');
+        $('#result').text('勝ち');
+        $('#decrease-btn-1').trigger('click');
+      } else {
+        // エラー処理を書く$('').
+
+      }
+
+    });
+
+
+    $('#par_btn').on('click', function () {
+
+      const computerNumber = Math.floor(Math.random() * 3);
+
+      if (computerNumber === 0) {
+        $('#com_hand').text('グー');
+        $('#result').text('勝ち');
+        $('#decrease-btn-1').trigger('click');
+
+      } else if (computerNumber === 1) {
+        $('#com_hand').text('チョキ');
+        $('#result').text('負け');
+        $('#decrease-btn').trigger('click');
+
+      } else if (computerNumber === 2) {
+        $('#com_hand').text('パー');
+        $('#result').text('あいこ');
+        $('#decrease-btn').trigger('click');
+        $('#decrease-btn-1').trigger('click');
+
+      } else {
+        // エラー処理を書く$('').
+      }
+    });
+
+
+
+
+  </script>
+
+</body>
+
+</html>

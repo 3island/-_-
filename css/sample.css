@@ -1,0 +1,165 @@
+body{
+    margin:0;
+    padding:0;
+    text-align:center;
+    font-size: 32px;
+    height: 100vh;
+}   
+
+main{
+    border-bottom:1px solid #ccc;
+    max-width: 100%;
+}
+
+p{
+    font-size:200%;
+    border-bottom:1px solid #fff;
+    height:200px;
+}
+ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-top: 1px solid #000000;
+}
+li{
+    list-style-type:none;
+    border: 1px solid #666;
+    background-color: #FFF;  /* 定義 */
+    cursor: pointer;
+    width: 30%;
+}
+li:hover{
+    background: #0066CC;
+    color:#fff;
+}
+
+/* --------------------------------------------computer------------------------------------------- */
+#life-frame {
+    margin: 0 auto;
+    width: 80%;
+    background-color: rgba(10, 0, 50, 0.6);
+    display: flex;
+    padding: 3px 3px;
+}
+
+#life-bar {
+    height: 3px;
+    background-color: rgb(0, 255, 255);
+    transition: 300ms
+}
+
+#life-mark {
+    width: 3px;
+    height: 3px;
+    border-radius: 3px;
+    background-color: rgb(255, 255, 255);
+    filter: saturate(500%);
+    box-shadow: 0 0 5px 3px rgb(200, 255, 255),
+        0 0 7px 7px rgb(100, 255, 255);
+}
+
+#btns-wrap {
+    width: 100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+#increase-btn,
+#decrease-btn {
+    margin-top: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    color: white;
+    background-color: dodgerblue;
+    text-align: center;
+    line-height: 30px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    user-select: none;
+}
+
+#increase-btn:active,
+#decrease-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+}
+
+#com_hand, #result {
+    text-align: center;
+}
+
+/* -------------------------------------------------pika----------------------------------------------- */
+#life-frame-1 {
+    margin: 0 auto;
+    width: 80%;
+    background-color: rgba(10, 0, 50, 0.6);
+    display: flex;
+    padding: 3px 3px;
+}
+
+#life-bar-1 {
+    height: 3px;
+    background-color: rgb(236, 199, 13);
+    transition: 300ms
+}
+
+#life-mark-1 {
+    width: 3px;
+    height: 3px;
+    border-radius: 3px;
+    background-color: rgb(255, 255, 255);
+    filter: saturate(500%);
+    box-shadow: 0 0 5px 3px rgb(200, 255, 255),
+        0 0 7px 7px rgb(100, 255, 255);
+}
+
+#btns-wrap-1 {
+    width: 100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+#increase-btn-1,
+#decrease-btn-1 {
+    margin-top: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(236,199,13);
+    text-align: center;
+    line-height: 30px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    user-select: none;
+}
+
+#increase-btn-1:active,
+#decrease-btn-1:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+}
+
+#com_hand,
+#result {
+    text-align: center;
+}
+
+.battle-field {
+    display: flex;
+    justify-content: space-between;
+    background-image: url("../img/草原.jpeg");
+    background-size: cover;
+    width: 100%;
+}
+
+.vs-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
